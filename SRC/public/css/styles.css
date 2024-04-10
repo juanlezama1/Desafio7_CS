@@ -1,0 +1,22 @@
+body {
+    background-color: black;
+    color: white;
+}
+
+.footer_Image, .main_subtitle, .main_title, .navBar_Image{
+    text-align: center;
+}
+
+.footer_Image_JPG, .navBar_Image_JPG {
+    height: 120px;
+}
+
+.card {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.card_container, .error_section, .error_image {
+    display: flex;
+    justify-content: center;
+}
