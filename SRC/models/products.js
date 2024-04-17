@@ -31,5 +31,4 @@ const productSchema = new Schema ({
 })
 
 // Exporto este prototipo en mi colección
-
 export const productModel = model ("products", productSchema)

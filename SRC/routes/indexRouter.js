@@ -1,10 +1,10 @@
 import productsRouter from './productsRouter.js'
 import express from 'express'
+import __dirname from '../path.js'
 
 const indexRouter = express.Router ()
 
-// Cuando voy a /products, lo gestiona el productsRouter y tiene acceso a la carpeta pública para las imágenes.
-
+// Índice de rutas
 indexRouter.use('/public', express.static(__dirname + '/public'))
 indexRouter.use('/products', productsRouter, express.static(__dirname + '/public'))
 
