@@ -60,23 +60,21 @@ productsRouter.put('/:pid', async (req, res) => {
 
     console.log("Actualizando producto específico...")
     let product_code = req.params.pid // Obtengo el código del producto a actualizar
-    let updated_product = req.body
-    console.log('codigo del producto: ', product_code)
-    console.log('contenido del producto: ', updated_product)
+    let updated_product = req.body // Obtengo los valores del producto actualizado
 
-    let my_product = await productModel.findByIdAndUpdate(product_code, updated_product).lean()
-
-    my_product?
-
-    (
+    // Busco por ID, lo actualizo y devuelvo el producto actualizado
+    try {
+        let my_product = await productModel.findByIdAndUpdate(product_code, updated_product, {new: 'true'}).lean()
         res.status(200).render('templates/home_id', {title: 'Producto Actualizado:', product: my_product}),
         console.log("Producto específico actualizado!")
-    ):
+    }
 
-    (
+    catch (error)
+
+    {
         res.status(400).render('templates/error', {error_description: "El producto no existe"}),
         console.log("Producto específico a actualizar no existe!")
-    )
+    }
 })
 
 // DELETE DE UN PRODUCTO ESPECÍFICO
@@ -85,19 +83,18 @@ productsRouter.delete('/:pid', async (req, res) => {
     console.log("Eliminando producto específico...")
     let product_code = req.params.pid // Obtengo el código del producto a eliminar
 
-    let my_product = await productModel.findByIdAndDelete(product_code)
-
-    my_product? 
-
-    (
+    try {
+        await productModel.findByIdAndDelete(product_code)
         res.status(200).send("Producto específico eliminado"),
         console.log("Producto específico eliminado!")
-    ):
+    }
 
-    (
+    catch (error)
+
+    {
         res.status(400).render('templates/error', {error_description: "El producto a eliminar no existe"}),
         console.log("Producto específico a eliminar no existe!")
-    )
+    }
 })
 
 // CREATE DE UN PRODUCTO
@@ -108,7 +105,6 @@ productsRouter.post('/', async (req, res) => {
     const new_product = req.body
 
     try {
-
         let my_product = await productModel.create(new_product)
         my_product = await productModel.findById(my_product._id.toString()).lean()
         res.status(200).render('templates/home_id', {title: 'Producto Creado:', product: my_product})

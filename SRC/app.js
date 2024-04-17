@@ -14,8 +14,8 @@ mongoose.connect("mongodb+srv://lezamaj:indexport.2011@cluster0.r9uoba0.mongodb.
     .catch(error => console.log("Error al conectarse a la DB: ", error))
 
 // Rutas
-my_app.use('/', indexRouter)
 my_app.use(express.json())
+my_app.use('/', indexRouter)
 
 // Implementación de Handlebars (motor de plantillas)
 my_app.engine('handlebars', engine())
