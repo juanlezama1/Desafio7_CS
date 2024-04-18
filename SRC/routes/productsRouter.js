@@ -5,8 +5,18 @@ const productsRouter = Router ()
 
 // LECTURA DE TODOS LOS PRODUCTOS
 productsRouter.get('/', async (req, res) => {
-    const {limit} = req.query // Si no se mandó, tendrá el valor 'undefined'
+    
+    // Query params que podría recibir. Si no se mandan, tendrán el valor 'undefined'
+    const {limit} = req.query // Por default será 10
+    // const {page} = req.page // Por default será 1
+    // const {sort} = req.sort // Por default no los ordenará
+    // const {query} = req.query // Por default hará una búsqueda general
+
     console.log("Enviando productos al cliente...")
+    const prueba = await productModel.paginate()
+
+    console.log(prueba)
+
 
     const my_products = await productModel.find().lean()
 
