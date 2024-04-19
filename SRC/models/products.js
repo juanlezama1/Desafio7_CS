@@ -28,6 +28,18 @@ const productSchema = new Schema ({
     stock: {
         type: String,
         required: true
+    },
+
+    category: {
+        type: String,
+        enum: ['Meals', 'Beverages', 'Other'],
+        default: 'Meals',
+        required: true
+    },
+
+    status: {
+        type: Boolean,
+        required: true
     }
 })
 
