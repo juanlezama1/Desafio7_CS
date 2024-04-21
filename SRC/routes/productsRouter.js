@@ -3,7 +3,7 @@ import { productModel } from "../models/products.js"
 
 const productsRouter = Router ()
 
-// LECTURA DE TODOS LOS PRODUCTOS (SÓLO DEVUELVE EL PAGINATION SEGÚN CONSIGNA)
+// LECTURA DE TODOS LOS PRODUCTOS (SÓLO DEVUELVE EL PAGINATION SEGÚN CONSIGNA DEL TP)
 productsRouter.get('/', async (req, res) => {
     
     // Query params que podría recibir. Si no se mandan, tendrán el valor 'undefined'
